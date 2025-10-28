@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "263887204195",
+    "project_id": "gerador-de-senhas-15f46",
+    "storage_bucket": "gerador-de-senhas-15f46.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:263887204195:android:d4b10089057d45cf02ed56",
+        "android_client_info": {
+          "package_name": "br.com.givasqueswemi.gerador_de_senhas"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAhxY_1fnamkGgPxijJ4Ouu2dIxvVGMBKQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
