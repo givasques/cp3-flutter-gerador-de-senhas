@@ -41,11 +41,6 @@ class _LoginScreenState extends State<LoginScreen> {
                 style: TextStyle(color: Colors.white),
               ),
               backgroundColor: Colors.green,
-              behavior: SnackBarBehavior.floating,
-              margin: const EdgeInsets.all(16),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
-              ),
               duration: const Duration(seconds: 3),
             ),
           );
@@ -60,11 +55,6 @@ class _LoginScreenState extends State<LoginScreen> {
                 style: const TextStyle(color: Colors.white),
               ),
               backgroundColor: Colors.red,
-              behavior: SnackBarBehavior.floating,
-              margin: const EdgeInsets.all(16),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
-              ),
               duration: const Duration(seconds: 3),
             ),
           );
@@ -97,16 +87,10 @@ class _LoginScreenState extends State<LoginScreen> {
                 style: TextStyle(color: Colors.white),
               ),
               backgroundColor: Colors.green,
-              behavior: SnackBarBehavior.floating,
-              margin: const EdgeInsets.all(16),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
-              ),
               duration: const Duration(seconds: 3),
             ),
           );
 
-          // ✅ Após registrar, envia o usuário para a tela inicial ou login
           Navigator.pushReplacementNamed(context, Routes.home);
         }
       } catch (e) {
@@ -118,11 +102,6 @@ class _LoginScreenState extends State<LoginScreen> {
                 style: const TextStyle(color: Colors.white),
               ),
               backgroundColor: Colors.red,
-              behavior: SnackBarBehavior.floating,
-              margin: const EdgeInsets.all(16),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
-              ),
               duration: const Duration(seconds: 3),
             ),
           );
@@ -179,7 +158,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     CustomTextField(
                       controller: _emailController,
                       labelText: 'Email',
-                      prefixIcon: Icons.email_outlined,
+                      icon: Icons.email_outlined,
                       validator: (v) =>
                           (v == null || v.isEmpty) ? 'Preencha o e-mail' : null,
                     ),
@@ -187,11 +166,11 @@ class _LoginScreenState extends State<LoginScreen> {
                     CustomTextField(
                       controller: _passwordController,
                       labelText: 'Senha',
-                      prefixIcon: Icons.lock_outline,
+                      icon: Icons.lock_outline,
                       obscureText: _isObscure,
                       validator: (v) =>
                           (v == null || v.isEmpty) ? 'Preencha a senha' : null,
-                      onToggleVisibility: () {
+                      visibility: () {
                         setState(() => _isObscure = !_isObscure);
                       },
                     ),

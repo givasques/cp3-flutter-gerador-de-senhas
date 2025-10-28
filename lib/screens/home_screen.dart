@@ -124,9 +124,10 @@ class _HomeScreenState extends State<HomeScreen> {
 
                 final docs = snapshot.data!.docs;
 
-                if (obscureList.length != docs.length) {
-                  obscureList = List.generate(docs.length, (_) => true);
-                }
+                obscureList = (obscureList.length == docs.length) 
+                ? obscureList 
+                : List.filled(docs.length, true);
+                
                 return Padding(
                   padding: const EdgeInsets.all(10),
                   child: ListView.builder(

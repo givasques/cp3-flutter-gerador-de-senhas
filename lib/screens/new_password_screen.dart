@@ -42,11 +42,6 @@ class _PasswordScreenState extends State<PasswordScreen> {
             style: const TextStyle(color: Colors.white),
           ),
           backgroundColor: Colors.green,
-          behavior: SnackBarBehavior.floating,
-          margin: const EdgeInsets.all(16),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12),
-          ),
           duration: const Duration(seconds: 3),
         ),
       );
@@ -65,8 +60,6 @@ class _PasswordScreenState extends State<PasswordScreen> {
       "includeSymbols": symbols,
     };
 
-    debugPrint('REQUEST -> $data');
-
     try {
       final response = await http.post(
         Uri.parse(url),
@@ -76,22 +69,49 @@ class _PasswordScreenState extends State<PasswordScreen> {
 
       if (response.statusCode == 200) {
         final data = json.decode(response.body);
-
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              'Senha gerada com sucesso!',
+              style: const TextStyle(color: Colors.white),
+            ),
+            backgroundColor: Colors.green,
+            duration: const Duration(seconds: 3),
+          ),
+        );
         setState(() {
           generatedPassword = data["password"];
           hasGenerated = true;
         });
       } else {
-        setState(() => generatedPassword = "Erro no servidor");
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              'Erro no servidor!',
+              style: const TextStyle(color: Colors.white),
+            ),
+            backgroundColor: Colors.red,
+            duration: const Duration(seconds: 3),
+          ),
+        );
       }
     } catch (e) {
-      setState(() => generatedPassword = "Erro de conexão: $e");
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            'Erro de conexão: $e',
+            style: const TextStyle(color: Colors.white),
+          ),
+          backgroundColor: Colors.red,
+          duration: const Duration(seconds: 3),
+        ),
+      );
     }
   }
 
   void _showNameDialog(BuildContext context, String password) {
     final TextEditingController _nameController = TextEditingController();
-    final _formKey = GlobalKey<FormState>(); // NOVO
+    final _formKey = GlobalKey<FormState>();
 
     showDialog(
       context: context,
@@ -99,7 +119,7 @@ class _PasswordScreenState extends State<PasswordScreen> {
         return AlertDialog(
           title: const Text("Nome da senha"),
           content: Form(
-            key: _formKey, // NOVO
+            key: _formKey,
             child: TextFormField(
               controller: _nameController,
               decoration: const InputDecoration(hintText: "Digite um nome"),
@@ -114,13 +134,12 @@ class _PasswordScreenState extends State<PasswordScreen> {
           actions: [
             TextButton(
               onPressed: () {
-                Navigator.pop(context); // fecha sem salvar
+                Navigator.pop(context);
               },
               child: const Text("Cancelar"),
             ),
             TextButton(
               onPressed: () {
-                // se o formulário for válido, salva
                 if (_formKey.currentState!.validate()) {
                   final nome = _nameController.text.trim();
                   Navigator.pop(context);
@@ -181,7 +200,7 @@ class _PasswordScreenState extends State<PasswordScreen> {
         backgroundColor: Color.fromARGB(255, 109, 131, 188),
         onPressed: hasGenerated
             ? () => _showNameDialog(context, generatedPassword)
-            : null, // botão de salvar no Firestore depois
+            : null,
         child: const Icon(Icons.save, color: Colors.white),
       ),
 
@@ -278,7 +297,7 @@ class _PasswordScreenState extends State<PasswordScreen> {
     return SwitchListTile(
       title: Text(text),
       value: value,
-      activeColor: Color.fromARGB(255, 109, 131, 188),
+      activeThumbColor: Color.fromARGB(255, 109, 131, 188),
       onChanged: onChange,
     );
   }

@@ -37,9 +37,6 @@ O projeto utiliza **Firebase** para autenticação e armazenamento de dados, al�
     ├── data/
     │ ├── settings_repository.dart
     │
-    ├── model/
-    │ ├── generated_password.dart
-    │
     ├── widgets/
     │ ├── custom_text_field.dart
     │ ├── password_result.dart
@@ -65,7 +62,7 @@ O projeto utiliza **Firebase** para autenticação e armazenamento de dados, al�
 
 - Consumo de API externa com tratamento de erros.
 
-- Boas práticas de organização de código Flutter (divisão em screens, widgets, data, model).
+- Boas práticas de organização de código Flutter (divisão em screens, widgets, data).
 
 ## Como Executar o Projeto
 

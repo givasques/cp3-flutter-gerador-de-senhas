@@ -35,6 +35,8 @@ class _IntroScreenState extends State<IntroScreen> {
 
   bool _dontShowAgain = false;
 
+   SettingsRepository? _settingsRepository;
+
   void _onNext() {
     if (_currentPage < _pages.length - 1) {
       _pageController.nextPage(
@@ -60,9 +62,7 @@ class _IntroScreenState extends State<IntroScreen> {
         curve: Curves.easeOut,
       );
     }
-  }
-
- SettingsRepository? _settingsRepository; 
+  } 
 
   @override
   void initState() {
